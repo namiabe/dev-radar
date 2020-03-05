@@ -46,6 +46,18 @@ module.exports = {
         } catch (error) {
             res.status(400).json({ message: error.message})
         }
+    },
+
+    async update (req, res) {
+        try {
+            const { id } = req.params
+            const { body } = req
+            
+            const dev = await Dev.findByIdAndUpdate(id, body)
+            res.json(dev)
+        } catch (error) {
+            res.status(400).json({ message: error.message})
+        }
     }
 
 }
