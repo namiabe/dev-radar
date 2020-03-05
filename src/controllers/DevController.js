@@ -54,7 +54,17 @@ module.exports = {
             const { body } = req
             
             const dev = await Dev.findByIdAndUpdate(id, body)
-            res.json(dev)
+            res.status(200).json(dev)
+        } catch (error) {
+            res.status(400).json({ message: error.message})
+        }
+    },
+
+    async delete (req, res) {
+        try {
+            const { id } = req.params
+            const dev = await Dev.findByIdAndDelete(id)
+            res.status(200).json(dev)            
         } catch (error) {
             res.status(400).json({ message: error.message})
         }
